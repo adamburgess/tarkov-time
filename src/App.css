@@ -2,10 +2,11 @@
     font-family: Inter, sans-serif;
 }
 
-.ff-body {
-    font-family: 'Bitter';
+@font-face {
+    font-family: Blender;
+    src: url('../fonts/Blender-Medium.ttf');
+    display: block;
 }
-
-.ff-mono {
-    font-family: "Fira Code", monospace;
+.ff-blender {
+    font-family: Blender, sans-serif;
 }

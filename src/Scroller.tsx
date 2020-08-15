@@ -17,7 +17,7 @@ function TarkovFutureTime({ hour, future, isLeft }: { hour: number, future: numb
     return <Fragment>
         <div class={`border-b inline`} style={{ width: 10, height: 0 }}></div>
         <div class={`flex flex-col px-1`}>
-            <div class="leading-4 text-sm text-gray-400">{hour.toString().padStart(2, '0')}:00</div>
+            <div class="leading-4 text-base text-gray-400 ff-blender">{hour.toString().padStart(2, '0')}:00</div>
             <div class={"flex leading-4 text-xs text-gray-500 " + direction}>
                 <span>{timeNow}</span>
                 <span class="mx-1">·</span>
@@ -36,7 +36,7 @@ function TarkovCurrentTimeElement({ tarkovTime, left }: { tarkovTime: Date, left
         height: 60
     }}>
         <div class="mx-2">
-            <div class="inline-block text-lg border-2 border-white bg-grey-900 px-4 py-1 md:px-6 md:py-2">
+            <div class="inline-block ff-blender text-xl border-2 border-white bg-grey-900 px-3 py-1 md:px-5 md:py-2">
                 <TarkovCurrentTime tarkovTime={tarkovTime} />
             </div>
         </div>
@@ -78,7 +78,9 @@ export function Scroller({ side, time }: { side: 'left' | 'right', time: Date })
         </div>;
     });
 
-    return <div>
+    return <div style={{
+        height: 12 * 60
+    }}>
         <div class={`relative overflow-hidden`}>
             <div class="relative" style={{
                 top: -tarkovMinute
@@ -87,10 +89,10 @@ export function Scroller({ side, time }: { side: 'left' | 'right', time: Date })
             </div>
             <div class="absolute w-full" style={{
                 top: 0,
-                height: 60,
+                height: 40,
                 background: 'linear-gradient(180deg, rgba(33,33,33,1) 0%, rgba(33,33,33,0) 100%)'
             }}></div>
-            <div class="absolute w-full" style={{
+            <div class="z-10 absolute w-full" style={{
                 bottom: 0,
                 height: 120,
                 background: 'linear-gradient(0deg, rgba(33,33,33,1) 0%, rgba(33,33,33,1) 50%, rgba(33,33,33,0) 100%)'
