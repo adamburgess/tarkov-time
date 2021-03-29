@@ -1,0 +1,14 @@
+{
+    "extends": [
+        "config:base",
+        "schedule:monthly"
+    ],
+    "rangeStrategy": "bump",
+    "packageRules": [
+        {
+          "packageNames": ["node"],
+          "enabled": false
+        }
+    ],
+    "prHourlyLimit": 999
+}
