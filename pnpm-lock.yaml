@@ -1,15 +1,15 @@
 dependencies:
   dayjs: 1.10.4
   preact: 10.5.13
-  tailwindcss: 2.0.4_postcss@8.2.8
+  tailwindcss: 2.0.4_postcss@8.2.9
 devDependencies:
   '@rollup/plugin-commonjs': 18.0.0_rollup@2.44.0
   '@rollup/plugin-json': 4.1.0_rollup@2.44.0
   '@rollup/plugin-node-resolve': 11.2.1_rollup@2.44.0
-  postcss: 8.2.8
+  postcss: 8.2.9
   rollup: 2.44.0
   rollup-plugin-livereload: 2.0.0
-  rollup-plugin-postcss: 4.0.0_postcss@8.2.8
+  rollup-plugin-postcss: 4.0.0_postcss@8.2.9
   rollup-plugin-serve: 1.1.0
   rollup-plugin-terser: 7.0.2_rollup@2.44.0
   rollup-plugin-typescript2: 0.30.0_rollup@2.44.0+typescript@4.2.3
@@ -877,9 +877,9 @@ packages:
     dev: true
     resolution:
       integrity: sha1-Bupvg2ead0njhs/h/oEq5dsiPe0=
-  /icss-utils/5.1.0_postcss@8.2.8:
+  /icss-utils/5.1.0_postcss@8.2.9:
     dependencies:
-      postcss: 8.2.8
+      postcss: 8.2.9
     dev: true
     engines:
       node: ^10 || ^12 || >= 14
@@ -1617,9 +1617,9 @@ packages:
       node: '>=6.9.0'
     resolution:
       integrity: sha512-D5S1iViljXBj9kflQo4YutWnJmwm8VvIsU1GeXJGiG9j8CIg9zs4voPMdQDUmIxetUOh60VilsNzCiAFTOqu3g==
-  /postcss-modules-extract-imports/3.0.0_postcss@8.2.8:
+  /postcss-modules-extract-imports/3.0.0_postcss@8.2.9:
     dependencies:
-      postcss: 8.2.8
+      postcss: 8.2.9
     dev: true
     engines:
       node: ^10 || ^12 || >= 14
@@ -1627,10 +1627,10 @@ packages:
       postcss: ^8.1.0
     resolution:
       integrity: sha512-bdHleFnP3kZ4NYDhuGlVK+CMrQ/pqUm8bx/oGL93K6gVwiclvX5x0n76fYMKuIGKzlABOy13zsvqjb0f92TEXw==
-  /postcss-modules-local-by-default/4.0.0_postcss@8.2.8:
+  /postcss-modules-local-by-default/4.0.0_postcss@8.2.9:
     dependencies:
-      icss-utils: 5.1.0_postcss@8.2.8
-      postcss: 8.2.8
+      icss-utils: 5.1.0_postcss@8.2.9
+      postcss: 8.2.9
       postcss-selector-parser: 6.0.4
       postcss-value-parser: 4.1.0
     dev: true
@@ -1640,9 +1640,9 @@ packages:
       postcss: ^8.1.0
     resolution:
       integrity: sha512-sT7ihtmGSF9yhm6ggikHdV0hlziDTX7oFoXtuVWeDd3hHObNkcHRo9V3yg7vCAY7cONyxJC/XXCmmiHHcvX7bQ==
-  /postcss-modules-scope/3.0.0_postcss@8.2.8:
+  /postcss-modules-scope/3.0.0_postcss@8.2.9:
     dependencies:
-      postcss: 8.2.8
+      postcss: 8.2.9
       postcss-selector-parser: 6.0.4
     dev: true
     engines:
@@ -1651,10 +1651,10 @@ packages:
       postcss: ^8.1.0
     resolution:
       integrity: sha512-hncihwFA2yPath8oZ15PZqvWGkWf+XUfQgUGamS4LqoP1anQLOsOJw0vr7J7IwLpoY9fatA2qiGUGmuZL0Iqlg==
-  /postcss-modules-values/4.0.0_postcss@8.2.8:
+  /postcss-modules-values/4.0.0_postcss@8.2.9:
     dependencies:
-      icss-utils: 5.1.0_postcss@8.2.8
-      postcss: 8.2.8
+      icss-utils: 5.1.0_postcss@8.2.9
+      postcss: 8.2.9
     dev: true
     engines:
       node: ^10 || ^12 || >= 14
@@ -1662,25 +1662,25 @@ packages:
       postcss: ^8.1.0
     resolution:
       integrity: sha512-RDxHkAiEGI78gS2ofyvCsu7iycRv7oqw5xMWn9iMoR0N/7mf9D50ecQqUo5BZ9Zh2vH4bCUR/ktCqbB9m8vJjQ==
-  /postcss-modules/4.0.0_postcss@8.2.8:
+  /postcss-modules/4.0.0_postcss@8.2.9:
     dependencies:
       generic-names: 2.0.1
       icss-replace-symbols: 1.1.0
       lodash.camelcase: 4.3.0
-      postcss: 8.2.8
-      postcss-modules-extract-imports: 3.0.0_postcss@8.2.8
-      postcss-modules-local-by-default: 4.0.0_postcss@8.2.8
-      postcss-modules-scope: 3.0.0_postcss@8.2.8
-      postcss-modules-values: 4.0.0_postcss@8.2.8
+      postcss: 8.2.9
+      postcss-modules-extract-imports: 3.0.0_postcss@8.2.9
+      postcss-modules-local-by-default: 4.0.0_postcss@8.2.9
+      postcss-modules-scope: 3.0.0_postcss@8.2.9
+      postcss-modules-values: 4.0.0_postcss@8.2.9
       string-hash: 1.1.3
     dev: true
     peerDependencies:
       postcss: ^8.0.0
     resolution:
       integrity: sha512-ghS/ovDzDqARm4Zj6L2ntadjyQMoyJmi0JkLlYtH2QFLrvNlxH5OAVRPWPeKilB0pY7SbuhO173KOWkPAxRJcw==
-  /postcss-nested/5.0.5_postcss@8.2.8:
+  /postcss-nested/5.0.5_postcss@8.2.9:
     dependencies:
-      postcss: 8.2.8
+      postcss: 8.2.9
       postcss-selector-parser: 6.0.4
     dev: false
     engines:
@@ -1883,10 +1883,21 @@ packages:
       colorette: 1.2.2
       nanoid: 3.1.22
       source-map: 0.6.1
+    dev: false
     engines:
       node: ^10 || ^12 || >=14
     resolution:
       integrity: sha512-1F0Xb2T21xET7oQV9eKuctbM9S7BC0fetoHCc4H13z0PT6haiRLP4T0ZY4XWh7iLP0usgqykT6p9B2RtOf4FPw==
+  /postcss/8.2.9:
+    dependencies:
+      colorette: 1.2.2
+      nanoid: 3.1.22
+      source-map: 0.6.1
+    dev: true
+    engines:
+      node: ^10 || ^12 || >=14
+    resolution:
+      integrity: sha512-b+TmuIL4jGtCHtoLi+G/PisuIl9avxs8IZMSmlABRwNz5RLUUACrC+ws81dcomz1nRezm5YPdXiMEzBEKgYn+Q==
   /preact/10.5.13:
     dev: false
     resolution:
@@ -1981,7 +1992,7 @@ packages:
       node: '>=8.3'
     resolution:
       integrity: sha512-oC/8NqumGYuphkqrfszOHUUIwzKsaHBICw6QRwT5uD07gvePTS+HW+GFwu6f9K8W02CUuTvtIM9AWJrbj4wE1A==
-  /rollup-plugin-postcss/4.0.0_postcss@8.2.8:
+  /rollup-plugin-postcss/4.0.0_postcss@8.2.9:
     dependencies:
       chalk: 4.1.0
       concat-with-sourcemaps: 1.1.0
@@ -1989,9 +2000,9 @@ packages:
       import-cwd: 3.0.0
       p-queue: 6.6.2
       pify: 5.0.0
-      postcss: 8.2.8
+      postcss: 8.2.9
       postcss-load-config: 3.0.1
-      postcss-modules: 4.0.0_postcss@8.2.8
+      postcss-modules: 4.0.0_postcss@8.2.9
       promise.series: 0.2.0
       resolve: 1.20.0
       rollup-pluginutils: 2.8.2
@@ -2186,7 +2197,7 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-yhy/sQYxR5BkC98CY7o31VGsg014AKLEPxdfhora76l36hD9Rdy5NZA/Ocn6yayNPgSamYdtX2rFJdcv07AYVw==
-  /tailwindcss/2.0.4_postcss@8.2.8:
+  /tailwindcss/2.0.4_postcss@8.2.9:
     dependencies:
       '@fullhuman/postcss-purgecss': 3.1.3
       bytes: 3.1.0
@@ -2200,10 +2211,10 @@ packages:
       modern-normalize: 1.0.0
       node-emoji: 1.10.0
       object-hash: 2.1.1
-      postcss: 8.2.8
+      postcss: 8.2.9
       postcss-functions: 3.0.0
       postcss-js: 3.0.3
-      postcss-nested: 5.0.5_postcss@8.2.8
+      postcss-nested: 5.0.5_postcss@8.2.9
       postcss-selector-parser: 6.0.4
       postcss-value-parser: 4.1.0
       pretty-hrtime: 1.0.3
@@ -2344,7 +2355,7 @@ specifiers:
   '@rollup/plugin-json': ^4.1.0
   '@rollup/plugin-node-resolve': ^11.2.1
   dayjs: ^1.10.4
-  postcss: ^8.2.8
+  postcss: ^8.2.9
   preact: ^10.5.13
   rollup: ^2.44.0
   rollup-plugin-livereload: ^2.0.0
