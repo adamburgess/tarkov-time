@@ -1,21 +1,21 @@
 {
     "private": true,
     "devDependencies": {
-        "@rollup/plugin-commonjs": "^18.0.0",
+        "@rollup/plugin-commonjs": "^18.1.0",
         "@rollup/plugin-json": "^4.1.0",
         "@rollup/plugin-node-resolve": "^11.2.1",
-        "postcss": "^8.2.13",
-        "rollup": "^2.46.0",
+        "postcss": "^8.3.0",
+        "rollup": "^2.50.5",
         "rollup-plugin-livereload": "^2.0.0",
         "rollup-plugin-postcss": "^4.0.0",
         "rollup-plugin-serve": "^1.1.0",
         "rollup-plugin-terser": "^7.0.2",
         "rollup-plugin-typescript2": "^0.30.0",
         "tslib": "^2.2.0",
-        "typescript": "^4.2.4"
+        "typescript": "^4.3.2"
     },
     "dependencies": {
-        "dayjs": "^1.10.4",
+        "dayjs": "^1.10.5",
         "preact": "^10.5.13",
         "tailwindcss": "^2.1.2"
     },
