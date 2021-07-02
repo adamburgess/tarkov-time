@@ -4,20 +4,20 @@
         "@rollup/plugin-commonjs": "^19.0.0",
         "@rollup/plugin-json": "^4.1.0",
         "@rollup/plugin-node-resolve": "^13.0.0",
-        "postcss": "^8.3.0",
-        "rollup": "^2.50.5",
-        "rollup-plugin-livereload": "^2.0.0",
+        "postcss": "^8.3.5",
+        "rollup": "^2.52.7",
+        "rollup-plugin-livereload": "^2.0.5",
         "rollup-plugin-postcss": "^4.0.0",
         "rollup-plugin-serve": "^1.1.0",
         "rollup-plugin-terser": "^7.0.2",
         "rollup-plugin-typescript2": "^0.30.0",
-        "tslib": "^2.2.0",
-        "typescript": "^4.3.2"
+        "tslib": "^2.3.0",
+        "typescript": "^4.3.5"
     },
     "dependencies": {
         "dayjs": "^1.10.5",
-        "preact": "^10.5.13",
-        "tailwindcss": "^2.1.2"
+        "preact": "^10.5.14",
+        "tailwindcss": "^2.2.4"
     },
     "scripts": {
         "build": "rollup -c",
