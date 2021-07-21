@@ -30,12 +30,14 @@ function TarkovFutureTime({ hour, future, isLeft }: { hour: number, future: numb
 function TarkovCurrentTimeElement({ tarkovTime, left }: { tarkovTime: Date, left: boolean }) {
 
     const justify = left ? 'justify-end' : 'justify-start';
+    // update 2021 july: push it slightly towards the center
+    const desktopMargin = left ? 'md:ml-6' : 'md:mr-6';
 
     return <div class={`z-10 flex absolute w-full text-center items-center ${justify} md:justify-center`} style={{
         top: 0,
         height: 60
     }}>
-        <div class="mx-2">
+        <div class={`mx-2 ${desktopMargin}`}>
             <div class="inline-block ff-blender text-xl border-2 border-white bg-grey-900 px-3 py-1 md:px-5 md:py-2">
                 <TarkovCurrentTime tarkovTime={tarkovTime} />
             </div>
