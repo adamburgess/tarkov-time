@@ -2,8 +2,7 @@
 module.exports = {
     mode: 'jit',
     purge: [
-        './src/*.tsx',
-        './dist/index.html'
+        './src/*.{tsx,mustache}'
     ],
     theme: {
         container: {

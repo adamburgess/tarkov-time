@@ -8,39 +8,64 @@ import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
 import json from '@rollup/plugin-json'
 import serve from 'rollup-plugin-serve'
+import fs from 'fs/promises'
+import mustache from 'mustache'
+import htmlMinifier from 'html-minifier'
 
 const production = !process.env.ROLLUP_WATCH;
 if (production) {
     process.env.NODE_ENV = 'production';
 }
 
-// function serve() {
-//     let server;
+function html() {
+    return {
+        name: 'html',
+        async generateBundle(options, bundle) {
+            const script = bundle['bundle.js'];
+            const css = bundle['bundle.css'];
 
-//     function toExit() {
-//         if (server) server.kill(0);
-//     }
+            const template = await fs.readFile('src/index.html.mustache', 'utf8');
 
-//     return {
-//         writeBundle() {
-//             if (server) return;
-//             server = require('child_process').spawn('yarn', ['run', 'serve', '--dev'], {
-//                 stdio: ['ignore', 'inherit', 'inherit'],
-//                 shell: true
-//             });
+            const html = mustache.render(template, {
+                script: script.code,
+                style: css.source
+            });
 
-//             process.on('SIGTERM', toExit);
-//             process.on('exit', toExit);
-//         }
-//     };
-// }
+            const minifiedHtml = htmlMinifier.minify(html, {
+                collapseBooleanAttributes: true,
+                collapseWhitespace: true,
+                decodeEntities: true,
+                html5: true,
+                processConditionalComments: true,
+                removeAttributeQuotes: true,
+                removeComments: true,
+                removeEmptyAttributes: true,
+                removeOptionalTags: true,
+                removeRedundantAttributes: true,
+                removeScriptTypeAttributes: true,
+                removeStyleLinkTypeAttributes: true,
+                trimCustomFragments: true,
+                useShortDoctype: true,
+            });
+
+            this.emitFile({
+                type: 'asset',
+                fileName: 'index.html',
+                source: minifiedHtml
+            });
+
+            delete bundle['bundle.js'];
+            delete bundle['bundle.css'];
+        }
+    };
+}
 
 export default {
     input: 'src/main.tsx',
     output: {
-        file: 'dist/build/bundle.js',
+        file: 'dist/bundle.js',
         format: 'iife',
-        sourcemap: production ? true : 'inline',
+        sourcemap: production ? false : 'inline',
         indent: false,
     },
     treeshake: production,
@@ -57,8 +82,9 @@ export default {
             ],
             extract: true,
             minimize: production,
-            sourceMap: production ? true : 'inline'
+            sourceMap: production ? false : 'inline'
         }),
+        html(),
         // In dev mode, call `npm run start` once
         // the bundle has been generated
         !production && serve({ contentBase: 'dist', port: 5000, host: '0.0.0.0' }),
@@ -67,6 +93,6 @@ export default {
         // browser on changes when not in production
         !production && livereload('dist'),
 
-        production && terser(),
+        production && terser({ compress: { passes: 2 } }),
     ]
 }
