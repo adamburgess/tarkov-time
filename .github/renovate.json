@@ -3,6 +3,7 @@
         "config:base",
         "schedule:monthly"
     ],
+    "rangeStrategy": "replace",
     "packageRules": [
         {
           "packageNames": ["node"],
