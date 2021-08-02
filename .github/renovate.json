@@ -1,13 +1,16 @@
 {
     "extends": [
-        "config:base",
-        "schedule:monthly"
+        "config:base"
     ],
     "rangeStrategy": "replace",
     "packageRules": [
         {
-          "packageNames": ["node"],
-          "enabled": false
+            "packageNames": ["node"],
+            "enabled": false
+        },
+        {
+            "matchDepTypes": ["devDependencies"],
+            "groupName": "devDependencies"
         }
     ],
     "prHourlyLimit": 999
