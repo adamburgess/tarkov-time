@@ -19,7 +19,7 @@
     "dependencies": {
         "dayjs": "^1.10.6",
         "preact": "^10.5.14",
-        "tailwindcss": "^2.2.5"
+        "tailwindcss": "^2.2.7"
     },
     "scripts": {
         "build": "rollup -c",

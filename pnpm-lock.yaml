@@ -15,14 +15,14 @@ specifiers:
   rollup-plugin-serve: ^1.1.0
   rollup-plugin-terser: ^7.0.2
   rollup-plugin-typescript2: ^0.30.0
-  tailwindcss: ^2.2.5
+  tailwindcss: ^2.2.7
   tslib: ^2.3.0
   typescript: ^4.3.5
 
 dependencies:
   dayjs: 1.10.6
   preact: 10.5.14
-  tailwindcss: 2.2.5_postcss@8.3.5
+  tailwindcss: 2.2.7_postcss@8.3.5
 
 devDependencies:
   '@rollup/plugin-commonjs': 20.0.0_rollup@2.53.3
@@ -2146,8 +2146,8 @@ packages:
       util.promisify: 1.0.1
     dev: true
 
-  /tailwindcss/2.2.5_postcss@8.3.5:
-    resolution: {integrity: sha512-/85aI7qltFUXCF/zRKCm2Z1TYKy74DK3V4DP1gxz++YK0CgV3TlXB9h7ylKAukrc+ILcRPe6+dSQ1lbCj8XSJQ==}
+  /tailwindcss/2.2.7_postcss@8.3.5:
+    resolution: {integrity: sha512-jv35rugP5j8PpzbXnsria7ZAry7Evh0KtQ4MZqNd+PhF+oIKPwJTVwe/rmfRx9cZw3W7iPZyzBmeoAoNwfJ1yg==}
     engines: {node: '>=12.13.0'}
     hasBin: true
     peerDependencies:
