@@ -1,7 +1,6 @@
 {
     "extends": [
-        "config:base",
-        "schedule:monthly"
+        "config:base"
     ],
     "rangeStrategy": "bump",
     "packageRules": [
