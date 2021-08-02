@@ -1,6 +1,7 @@
 {
     "extends": [
-        "config:base"
+        "config:base",
+        "schedule:monthly"
     ],
     "rangeStrategy": "bump",
     "packageRules": [
@@ -9,8 +10,8 @@
             "enabled": false
         },
         {
-            "matchDepTypes": ["devDependencies"],
-            "groupName": "devDependencies"
+            "matchPackageNames": ["*"],
+            "groupName": "all dependencies"
         }
     ],
     "prHourlyLimit": 999
