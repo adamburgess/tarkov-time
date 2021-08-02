@@ -9,7 +9,7 @@
             "enabled": false
         },
         {
-            "matchPackageNames": ["*"],
+            "matchPackagePatterns": ["*"],
             "groupName": "all dependencies"
         }
     ],
