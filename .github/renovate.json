@@ -11,7 +11,8 @@
         },
         {
             "matchPackagePatterns": ["*"],
-            "groupName": "all dependencies"
+            "groupName": "all dependencies",
+            "separateMajorMinor": false,
         }
     ],
     "prHourlyLimit": 999
