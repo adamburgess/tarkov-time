@@ -40,7 +40,6 @@ function html() {
                 removeAttributeQuotes: true,
                 removeComments: true,
                 removeEmptyAttributes: true,
-                removeOptionalTags: true,
                 removeRedundantAttributes: true,
                 removeScriptTypeAttributes: true,
                 removeStyleLinkTypeAttributes: true,
