@@ -66,6 +66,7 @@ export default {
         format: 'iife',
         sourcemap: production ? false : 'inline',
         indent: false,
+        generatedCode: 'es2015'
     },
     treeshake: production,
     // perf: true,
