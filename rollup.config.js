@@ -1,16 +1,13 @@
-//import typescript from '@rollup/plugin-typescript'
-import typescript from 'rollup-plugin-typescript2'
 import postcss from 'rollup-plugin-postcss'
 import tailwindcss from 'tailwindcss'
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
-import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
-import json from '@rollup/plugin-json'
-import serve from 'rollup-plugin-serve'
 import fs from 'fs/promises'
 import mustache from 'mustache'
 import htmlMinifier from 'html-minifier'
+import { brotliCompressSync } from 'zlib'
+import esbuild from 'rollup-plugin-esbuild'
 
 const production = !process.env.ROLLUP_WATCH;
 if (production) {
@@ -20,7 +17,7 @@ if (production) {
 function html() {
     return {
         name: 'html',
-        async generateBundle(options, bundle) {
+        async generateBundle(_, bundle) {
             const script = bundle['bundle.js'];
             const css = bundle['bundle.css'];
 
@@ -55,26 +52,38 @@ function html() {
 
             delete bundle['bundle.js'];
             delete bundle['bundle.css'];
+
+            console.log('index.html size', minifiedHtml.length, 'brotli', brotliCompressSync(Buffer.from(minifiedHtml)).length);
         }
     };
+}
+
+function favicon() {
+    return {
+        name: 'favicon',
+        async generateBundle() {
+            this.emitFile({
+                type: 'asset',
+                fileName: 'favicon.ico',
+                source: await fs.readFile('src/favicon.ico')
+            });
+        }
+    }
 }
 
 export default {
     input: 'src/main.tsx',
     output: {
         file: 'dist/bundle.js',
-        format: 'iife',
+        format: 'es',
         sourcemap: production ? false : 'inline',
-        indent: false,
+        indent: false
     },
-    treeshake: production,
-    // perf: true,
-    
+
     plugins: [
         resolve(),
         commonjs(),
-        json(),
-        typescript(),
+        esbuild(),
         postcss({
             plugins: [
                 tailwindcss
@@ -83,15 +92,8 @@ export default {
             minimize: production,
             sourceMap: production ? false : 'inline'
         }),
+        favicon(),
         html(),
-        // In dev mode, call `npm run start` once
-        // the bundle has been generated
-        !production && serve({ contentBase: 'dist', port: 5000, host: '0.0.0.0' }),
-
-        // Watch the `public` directory and refresh the
-        // browser on changes when not in production
-        !production && livereload('dist'),
-
-        production && terser({ compress: { passes: 2 } }),
+        production && terser({ compress: { passes: 5 } }),
     ]
 }
