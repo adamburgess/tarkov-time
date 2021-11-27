@@ -1,11 +1,7 @@
-import dayjs from 'dayjs';
+import { hrs } from './utils';
 
 // 1 second real time = 7 seconds tarkov time
 const tarkovRatio = 7;
-
-export function hrs(num: number) {
-    return 1000 * 60 * 60 * num;
-}
 
 export function realTimeToTarkovTime(time: Date, left: boolean) {
     // tarkov time moves at 7 seconds per second.
@@ -30,20 +26,4 @@ export function timeUntilRelative(until: number, left: boolean, date: Date) {
     const diffRT = diffTarkov / tarkovRatio;
 
     return diffRT;
-}
-
-export function formatFuture(ms: number) {
-    const time = dayjs.utc(ms);
-    const hour = time.hour();
-    const min = time.minute();
-    const sec = time.second();
-    let text = '';
-    if (hour != 0) {
-        text = hour + 'hr';
-    }
-    text += min + 'min';
-    if(hour == 0 && min == 0) {
-        text = sec + 's';
-    }
-    return text;
 }

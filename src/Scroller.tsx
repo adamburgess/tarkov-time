@@ -1,18 +1,16 @@
-import { h, Fragment, ComponentChildren } from 'preact';
-import dayjs from 'dayjs';
-import dayjsUtc from 'dayjs/plugin/utc'
-import { realTimeToTarkovTime, timeUntilRelative, hrs, formatFuture } from './time';
-dayjs.extend(dayjsUtc);
+import { h, Fragment } from 'preact';
+import { realTimeToTarkovTime, timeUntilRelative } from './time';
+import { formatHMS, formatLocalTime, formatTimeUntil, hrs } from './utils';
 
 function TarkovCurrentTime({ tarkovTime }: { tarkovTime: Date }) {
-    return <Fragment>{dayjs.utc(tarkovTime).format('HH:mm:ss')}</Fragment>
+    return <Fragment>{formatHMS(tarkovTime)}</Fragment>
 }
 
 function TarkovFutureTime({ hour, future, isLeft }: { hour: number, future: number, isLeft: boolean }) {
     const direction = isLeft ? 'flex-row' : 'flex-row-reverse';
 
-    const timeRemaining = future == 0 ? 'now' : formatFuture(future);
-    const timeNow = dayjs().add(future, 'ms').format('h:mma');
+    const timeRemaining = future == 0 ? 'now' : formatTimeUntil(future);
+    const timeNow = formatLocalTime(new Date(new Date().getTime() + future));
 
     return <Fragment>
         <div class={`border-b inline`} style={{ width: 10, height: 0 }}></div>

@@ -1,7 +1,6 @@
 // tailwind.config.js
 module.exports = {
-    mode: 'jit',
-    purge: [
+    content: [
         './src/*.{tsx,mustache}'
     ],
     theme: {

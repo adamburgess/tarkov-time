@@ -71,10 +71,10 @@ function favicon() {
     }
 }
 
-export default {
+export default [{
     input: 'src/main.tsx',
     output: {
-        file: 'dist/bundle.js',
+        file: 'public/bundle.js',
         format: 'es',
         sourcemap: production ? false : 'inline',
         indent: false
@@ -96,4 +96,15 @@ export default {
         html(),
         production && terser({ compress: { passes: 5 } }),
     ]
-}
+}, {
+    input: 'src/api.ts',
+    output: {
+        file: 'public/middleware.js',
+        format: 'cjs'
+    }, 
+    plugins: [
+        resolve(),
+        commonjs(),
+        esbuild()
+    ]
+}];
