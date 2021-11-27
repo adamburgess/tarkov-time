@@ -1,8 +1,20 @@
 import { h } from 'preact';
+import { useEffect, useState } from 'preact/hooks';
 import './App.css'
 
-import { useDate } from './utils';
 import { Scroller } from './Scroller'
+
+export function useDate(initial: Date, updateSpeed: number) {
+    const [time, setTime] = useState(initial);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTime(new Date());
+        }, updateSpeed);
+        return () => clearInterval(interval);
+    }, [updateSpeed]);
+
+    return time;
+}
 
 export function App() {
     const time = useDate(new Date(), 50);
