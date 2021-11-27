@@ -1,10 +1,7 @@
-import { h, Fragment } from 'preact';
-import { useEffect, useState } from 'preact/hooks'
-import dayjs, { Dayjs } from 'dayjs'
-
-import { useDate } from './utils';
+import { h } from 'preact';
 import './App.css'
 
+import { useDate } from './utils';
 import { Scroller } from './Scroller'
 
 export function App() {
