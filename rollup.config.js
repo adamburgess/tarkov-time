@@ -99,7 +99,7 @@ export default [{
 }, {
     input: 'src/api.ts',
     output: {
-        file: 'public/middleware.js',
+        file: '.next/api.js',
         format: 'cjs'
     }, 
     plugins: [
