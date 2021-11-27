@@ -9,14 +9,14 @@
     ]
   ],
   "middleware": {
-    "/f": {
+    "/api": {
       "env": [],
       "files": [
         "api.js"
       ],
       "name": "api",
       "page": "/api",
-      "regexp": "^/(time|left|right).*$"
+      "regexp": "^/(time|left|right)$"
     }
   },
   "version": 1
