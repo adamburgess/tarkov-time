@@ -41,8 +41,8 @@ function handle(request: VercelRequest): Response {
     const url = new URL(request.url);
     const path = url.pathname;
 
-    if (path === 'left') return new Response(get(true), headers());
-    else if (path === 'right') return new Response(get(false), headers());
+    if (path === '/left') return new Response(get(true), headers());
+    else if (path === '/right') return new Response(get(false), headers());
 
     return new Response(JSON.stringify({
         left: get(true),
