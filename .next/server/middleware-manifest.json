@@ -16,7 +16,7 @@
       ],
       "name": "api",
       "page": "/api",
-      "regexp": "^/(time|left|right)$"
+      "regexp": "^/(api|left|right)$"
     }
   },
   "version": 1
