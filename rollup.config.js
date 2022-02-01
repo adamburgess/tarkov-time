@@ -71,10 +71,36 @@ function favicon() {
     }
 }
 
+function vercelMiddleware(options) {
+    return {
+        name: 'vercel-middleware',
+        async generateBundle(_, bundle) {
+            console.log(Object.keys(bundle));
+            this.emitFile({
+                type: 'asset',
+                fileName: 'functions-manifest.json',
+                source: JSON.stringify({
+                    version: 1,
+                    pages: {
+                        '_middleware.js': {
+                            runtime: 'web',
+                            env: [],
+                            files: Object.keys(bundle)[0],
+                            name: 'api',
+                            regexp: options.regexp,
+                            sortingIndex: 1
+                        }
+                    }
+                }, null, 2)
+            });
+        }
+    }
+}
+
 export default [{
     input: 'src/main.tsx',
     output: {
-        file: 'public/bundle.js',
+        file: '.output/static/bundle.js',
         format: 'es',
         sourcemap: production ? false : 'inline',
         indent: false
@@ -99,12 +125,15 @@ export default [{
 }, {
     input: 'src/api.ts',
     output: {
-        file: '.next/api.js',
+        file: '.output/_middleware.js',
         format: 'cjs'
     }, 
     plugins: [
         resolve(),
         commonjs(),
-        esbuild()
+        esbuild(),
+        vercelMiddleware({
+            regexp: '^/(api|left|right)$',
+        }),
     ]
 }];
