@@ -75,7 +75,6 @@ function vercelMiddleware(options) {
     return {
         name: 'vercel-middleware',
         async generateBundle(_, bundle) {
-            console.log(Object.keys(bundle));
             this.emitFile({
                 type: 'asset',
                 fileName: 'functions-manifest.json',
