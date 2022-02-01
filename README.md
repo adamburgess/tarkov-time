@@ -1,4 +1,4 @@
-# Escape from Tarkov: Real time to In-game time
+# Escape from Tarkov: Real time to Tarkov time
 
 ## https://tarkov-time.adam.id.au/
 
