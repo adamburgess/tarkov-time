@@ -41,4 +41,7 @@ module.exports = {
     },
     variants: {},
     plugins: [],
+    experimental: {
+        optimizeUniversalDefaults: true
+    },
 }
