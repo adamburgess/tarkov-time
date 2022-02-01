@@ -114,7 +114,13 @@ export default [{
                 tailwindcss
             ],
             extract: true,
-            minimize: production,
+            minimize: {
+                preset: ['default', {
+                    discardComments: {
+                        removeAll: true,
+                    },
+                }]
+            },
             sourceMap: production ? false : 'inline'
         }),
         favicon(),
