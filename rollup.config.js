@@ -92,6 +92,29 @@ function vercelMiddleware(options) {
                     }
                 }, null, 2)
             });
+
+            this.emitFile({
+                type: 'asset',
+                fileName: 'routes-manifest.json',
+                source: JSON.stringify({
+                    version: 3,
+                    basePath: '',
+                    pages404: false,
+                    headers: [{
+                        source: '/',
+                        headers: [{
+                            key: 'cache-control',
+                            value: 'max-age=3600, stale-while-revalidate=82800, stale-if-error=31536000'
+                        }]
+                    },{
+                        source: '/favicon.ico',
+                        headers: [{
+                            key: 'cache-control',
+                            value: 'max-age=604800, stale-if-error=31536000'
+                        }]
+                    }]
+                }, null, 2)
+            });
         }
     }
 }
