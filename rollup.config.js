@@ -103,13 +103,13 @@ function vercelMiddleware(options) {
                     headers: [{
                         source: '/',
                         headers: [{
-                            key: 'cache-control',
+                            key: 'Cache-Control',
                             value: 'max-age=3600, stale-while-revalidate=82800, stale-if-error=31536000'
                         }]
                     },{
                         source: '/favicon.ico',
                         headers: [{
-                            key: 'cache-control',
+                            key: 'Cache-Control',
                             value: 'max-age=604800, stale-if-error=31536000'
                         }]
                     }]
