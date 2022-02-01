@@ -85,7 +85,7 @@ function vercelMiddleware(options) {
                         '_middleware.js': {
                             runtime: 'web',
                             env: [],
-                            files: Object.keys(bundle)[0],
+                            files: [Object.keys(bundle)[0]],
                             name: 'api',
                             regexp: options.regexp,
                             sortingIndex: 1
