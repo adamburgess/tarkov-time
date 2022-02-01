@@ -2,3 +2,4 @@ public
 node_modules
 .next/api.js
 .output
+.next-old/api.js
