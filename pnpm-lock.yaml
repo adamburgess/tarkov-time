@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@cloudflare/workers-types': ^3.4.0
   '@rollup/plugin-commonjs': ^21.0.1
   '@rollup/plugin-node-resolve': ^13.1.3
   esbuild: ^0.14.15
@@ -20,6 +21,7 @@ dependencies:
   tailwindcss: 3.0.18_postcss@8.4.5
 
 devDependencies:
+  '@cloudflare/workers-types': 3.4.0
   '@rollup/plugin-commonjs': 21.0.1_rollup@2.66.1
   '@rollup/plugin-node-resolve': 13.1.3_rollup@2.66.1
   esbuild: 0.14.15
@@ -51,6 +53,10 @@ packages:
       '@babel/helper-validator-identifier': 7.15.7
       chalk: 2.4.2
       js-tokens: 4.0.0
+
+  /@cloudflare/workers-types/3.4.0:
+    resolution: {integrity: sha512-i/3czUrt6YqbOWl44OtIqd0cSZvEVXp/1oD/DZylC4PHZL3q/BhbamdEVeVhc/HPk4iD/7MZ2HGaIMO4Z4b12A==}
+    dev: true
 
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}

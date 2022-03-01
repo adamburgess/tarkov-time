@@ -71,50 +71,31 @@ function favicon() {
     }
 }
 
-function vercelMiddleware(options) {
+function headers(content) {
     return {
-        name: 'vercel-middleware',
-        async generateBundle(_, bundle) {
+        name: 'headers',
+        async generateBundle() {
             this.emitFile({
                 type: 'asset',
-                fileName: 'functions-manifest.json',
-                source: JSON.stringify({
-                    version: 1,
-                    pages: {
-                        '_middleware.js': {
-                            runtime: 'web',
-                            env: [],
-                            files: [Object.keys(bundle)[0]],
-                            name: 'api',
-                            regexp: options.regexp,
-                            sortingIndex: 1
-                        }
-                    }
-                }, null, 2)
+                fileName: '_headers',
+                source: content
             });
+        }
+    }
+}
 
-            this.emitFile({
-                type: 'asset',
-                fileName: 'routes-manifest.json',
-                source: JSON.stringify({
-                    version: 3,
-                    basePath: '',
-                    pages404: false,
-                    headers: [{
-                        source: '/',
-                        headers: [{
-                            key: 'Cache-Control',
-                            value: 'max-age=3600, stale-while-revalidate=82800, stale-if-error=31536000'
-                        }]
-                    },{
-                        source: '/favicon.ico',
-                        headers: [{
-                            key: 'Cache-Control',
-                            value: 'max-age=604800, stale-if-error=31536000'
-                        }]
-                    }]
-                }, null, 2)
-            });
+function duplicate(filenames) {
+    return {
+        name: 'duplicate',
+        async generateBundle(_, bundle) {
+            const file = bundle[Object.keys(bundle)[0]];
+            for(const fn of filenames) {
+                this.emitFile({
+                    type: 'asset',
+                    fileName: fn,
+                    source: file.code
+                });
+            }
         }
     }
 }
@@ -122,7 +103,7 @@ function vercelMiddleware(options) {
 export default [{
     input: 'src/main.tsx',
     output: {
-        file: '.output/static/bundle.js',
+        file: '.output/bundle.js',
         format: 'es',
         sourcemap: production ? false : 'inline',
         indent: false
@@ -149,19 +130,23 @@ export default [{
         favicon(),
         html(),
         production && terser({ compress: { passes: 5 } }),
+        headers(`/
+    Cache-Control: max-age=3600, stale-while-revalidate=82800, stale-if-error=31536000
+
+/favicon.ico
+    max-age=604800, stale-if-error=31536000
+`)
     ]
 }, {
     input: 'src/api.ts',
     output: {
-        file: '.output/_middleware.js',
-        format: 'cjs'
+        file: 'functions/api.js',
+        format: 'esm'
     }, 
     plugins: [
         resolve(),
         commonjs(),
         esbuild(),
-        vercelMiddleware({
-            regexp: '^/(api|left|right)$',
-        }),
+        duplicate(['left.js', 'right.js'])
     ]
 }];
