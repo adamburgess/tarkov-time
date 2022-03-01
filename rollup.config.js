@@ -134,7 +134,7 @@ export default [{
     Cache-Control: max-age=3600, stale-while-revalidate=82800, stale-if-error=31536000
 
 /favicon.ico
-    max-age=604800, stale-if-error=31536000
+    Cache-Control: max-age=604800, stale-if-error=31536000
 `)
     ]
 }, {
