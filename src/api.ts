@@ -1,27 +1,12 @@
 import { realTimeToTarkovTime } from './time'
 import { formatHMS } from './utils';
 
-interface VercelRequest {
-    url: string
-}
-type Handler = (event: {
-    request: VercelRequest
-}) => { response: Response, waitUntil: Promise<unknown> };
-
-declare let _ENTRIES: Record<string, { default: Handler }>;
-
-const resolvedPromise = Promise.resolve();
-
-_ENTRIES = {
-    "middleware_api": {
-        default: ({ request }) => {
-            return {
-                response: handle(request),
-                waitUntil: resolvedPromise
-            };
-        }
-    }
-}
+type EventContext<Env> = {
+    request: Request;
+    waitUntil: (promise: Promise<any>) => void;
+    next: (input?: Request | string, init?: RequestInit) => Promise<Response>;
+    env: Env & { ASSETS: { fetch: typeof fetch } };
+};
 
 function get(left: boolean) {
     return formatHMS(realTimeToTarkovTime(new Date(), left));
@@ -37,8 +22,8 @@ function headers(extraHeaders: Record<string, string> = {}) {
     }
 }
 
-function handle(request: VercelRequest): Response {
-    const url = new URL(request.url);
+export function onRequest(context: EventContext<unknown>): Response {
+    const url = new URL(context.request.url);
     const path = url.pathname;
 
     if (path === '/left') return new Response(get(true), headers());
