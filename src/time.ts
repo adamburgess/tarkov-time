@@ -6,7 +6,7 @@ const tarkovRatio = 7;
 export function realTimeToTarkovTime(time: Date, left: boolean) {
     // tarkov time moves at 7 seconds per second.
     // surprisingly, 00:00:00 does not equal unix 0... but it equals unix 10,800,000.
-    // Which is 3 hours. What's also +3? Yep, Russia. UTC+3.
+    // Which is 3 hours. What's also +3? Yep, St Petersberg - MSK: UTC+3.
     // therefore, to convert real time to tarkov time,
     // tarkov time = (real time * 7 % 24 hr) + 3 hour
 
