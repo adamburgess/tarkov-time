@@ -16,7 +16,7 @@ function headers(extraHeaders: Record<string, string> = {}) {
     return {
         headers: {
             'Access-Control-Allow-Origin': '*',
-            'Cache-Control': 'public, max-age=1',
+            'Cache-Control': 'max-age=0',
             ...extraHeaders
         }
     }
