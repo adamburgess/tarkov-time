@@ -29,6 +29,14 @@ export function onRequest(context: EventContext<unknown>): Response {
     if (path === '/left') return new Response(get(true), headers());
     else if (path === '/right') return new Response(get(false), headers());
 
+    let plaintext = url.searchParams.get('type') === 'plain';
+
+    if (plaintext) {
+        return new Response(`${get(true)}\n${get(false)}`, headers({
+            'Content-Type': 'text/plain'
+        }));
+    }
+
     return new Response(JSON.stringify({
         left: get(true),
         right: get(false),
