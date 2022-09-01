@@ -1,7 +1,10 @@
 defaults:
   run:
     working-directory: desktop-app
-on: [push]
+on:
+  push:
+    paths:
+      - 'desktop-app/**'
 jobs:
   desktop-app:
     strategy:
