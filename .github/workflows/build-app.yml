@@ -10,7 +10,7 @@ jobs:
         os: [windows-latest] # if you want, enable linux with ubuntu-latest
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       #- run: sudo apt-get install libpango1.0-dev libatk1.0-dev libglib2.0-dev libgdk-pixbuf2.0-dev librust-gdk-sys-dev
       #  if: ${{ matrix.os == 'ubuntu-latest' }}
       - uses: actions-rs/toolchain@v1
