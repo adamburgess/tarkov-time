@@ -1,13 +1,6 @@
 import { realTimeToTarkovTime } from './time'
 import { formatHMS } from './utils';
 
-type EventContext<Env> = {
-    request: Request;
-    waitUntil: (promise: Promise<any>) => void;
-    next: (input?: Request | string, init?: RequestInit) => Promise<Response>;
-    env: Env & { ASSETS: { fetch: typeof fetch } };
-};
-
 function get(left: boolean) {
     return formatHMS(realTimeToTarkovTime(new Date(), left));
 }
@@ -22,25 +15,27 @@ function headers(extraHeaders: Record<string, string> = {}) {
     }
 }
 
-export function onRequest(context: EventContext<unknown>): Response {
-    const url = new URL(context.request.url);
-    const path = url.pathname;
+export default {
+    async fetch(request: Request) {
+        const url = new URL(request.url);
+        const path = url.pathname;
 
-    if (path === '/left') return new Response(get(true), headers());
-    else if (path === '/right') return new Response(get(false), headers());
+        if (path === '/left') return new Response(get(true), headers());
+        else if (path === '/right') return new Response(get(false), headers());
 
-    let plaintext = url.searchParams.get('type') === 'plain';
+        let plaintext = url.searchParams.get('type') === 'plain';
 
-    if (plaintext) {
-        return new Response(`${get(true)}\n${get(false)}`, headers({
-            'Content-Type': 'text/plain'
+        if (plaintext) {
+            return new Response(`${get(true)}\n${get(false)}`, headers({
+                'Content-Type': 'text/plain'
+            }));
+        }
+
+        return new Response(JSON.stringify({
+            left: get(true),
+            right: get(false),
+        }, null, 2), headers({
+            'Content-Type': 'application/json'
         }));
     }
-
-    return new Response(JSON.stringify({
-        left: get(true),
-        right: get(false),
-    }, null, 2), headers({
-        'Content-Type': 'application/json'
-    }));
 }

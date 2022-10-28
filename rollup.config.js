@@ -84,18 +84,19 @@ function headers(content) {
     }
 }
 
-function duplicate(filenames) {
+function routes(include) {
     return {
-        name: 'duplicate',
-        async generateBundle(_, bundle) {
-            const file = bundle[Object.keys(bundle)[0]];
-            for(const fn of filenames) {
-                this.emitFile({
-                    type: 'asset',
-                    fileName: fn,
-                    source: file.code
-                });
-            }
+        name: 'routes',
+        async generateBundle() {
+            this.emitFile({
+                type: 'asset',
+                fileName: '_routes.json',
+                source: JSON.stringify({
+                    version: 1,
+                    include,
+                    exclude: []
+                }, null, 2)
+            });
         }
     }
 }
@@ -135,18 +136,18 @@ export default [{
 
 /favicon.ico
     Cache-Control: max-age=604800, stale-if-error=31536000
-`)
+`),
+        routes(['/api', '/left', '/right'])
     ]
 }, {
     input: 'src/api.ts',
     output: {
-        file: 'functions/api.js',
+        file: '.output/_worker.js',
         format: 'esm'
-    }, 
+    },
     plugins: [
         resolve(),
         commonjs(),
-        esbuild(),
-        duplicate(['left.js', 'right.js'])
+        esbuild()
     ]
 }];
