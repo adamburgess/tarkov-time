@@ -8,7 +8,7 @@
         "html-minifier": "^4.0.0",
         "mustache": "^4.2.0",
         "postcss": "^8.4.18",
-        "rollup": "^3.2.3",
+        "rollup": "^3.2.5",
         "rollup-plugin-esbuild": "^4.10.1",
         "rollup-plugin-postcss": "^4.0.2",
         "rollup-plugin-terser": "^7.0.2",
