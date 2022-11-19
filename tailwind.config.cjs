@@ -3,6 +3,10 @@ module.exports = {
     content: [
         './src/*.{tsx,mustache}'
     ],
+    corePlugins: {
+        textOpacity: false,
+        backgroundOpacity: false
+    },
     theme: {
         container: {
             center: true,

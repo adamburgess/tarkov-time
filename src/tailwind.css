@@ -1,4 +1,24 @@
-@tailwind base;
+/* tailwind base is large and we don't use most of the styles. */
+/* @tailwind base; */
+
+*, :after, :before {
+    box-sizing: border-box;
+    border: 0 solid #e5e7eb;
+}
+html, body {
+    font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif;
+    line-height: 1.5;
+    margin: 0;
+}
+
+h1, h2 {
+    margin: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
 
 @tailwind components;
 
