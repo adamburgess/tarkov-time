@@ -6,7 +6,7 @@ import terser from '@rollup/plugin-terser'
 import fs from 'fs/promises'
 import mustache from 'mustache'
 import htmlMinifier from 'html-minifier'
-import { brotliCompressSync } from 'zlib'
+import { brotliCompressSync, gzipSync } from 'zlib'
 import esbuild from 'rollup-plugin-esbuild'
 
 const production = !process.env.ROLLUP_WATCH;
@@ -53,7 +53,7 @@ function html() {
             delete bundle['bundle.js'];
             delete bundle['bundle.css'];
 
-            console.log('index.html size', minifiedHtml.length, 'brotli', brotliCompressSync(Buffer.from(minifiedHtml)).length);
+            console.log('index.html size', minifiedHtml.length, 'brotli', brotliCompressSync(Buffer.from(minifiedHtml)).length, 'gzip', gzipSync(Buffer.from(minifiedHtml)).length);
         }
     };
 }
