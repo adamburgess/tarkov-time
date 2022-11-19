@@ -109,7 +109,6 @@ export default [{
         sourcemap: production ? false : 'inline',
         indent: false
     },
-
     plugins: [
         resolve(),
         commonjs(),
@@ -130,7 +129,13 @@ export default [{
         }),
         favicon(),
         html(),
-        production && terser({ compress: { passes: 5 } }),
+        production && terser({ 
+            compress: {
+                passes: 5,
+                unsafe_methods: true
+            },
+            ecma: 2019
+        }),
         headers(`/
     Cache-Control: max-age=3600, stale-while-revalidate=82800, stale-if-error=31536000
 
