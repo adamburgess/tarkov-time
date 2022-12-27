@@ -2,7 +2,7 @@
     "extends": [
         "config:base",
         ":disableDependencyDashboard",
-        "schedule:monthly"
+        "schedule:quarterly"
     ],
     "rangeStrategy": "bump",
     "packageRules": [
