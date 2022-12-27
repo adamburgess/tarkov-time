@@ -85,7 +85,6 @@ impl<W: Widget<MyState>> Controller<MyState, W> for OnStart {
                 if *id == self.timer_id {
                     ctx.request_layout();
                     self.timer_id = ctx.request_timer(TIMER_INTERVAL);
-                    println!("Timer!");
                     data.time = get_unix_time();
                 }
             }
