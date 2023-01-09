@@ -31,7 +31,7 @@ async function logRequest(request: Request, apiUrl: string) {
 }
 
 function shouldLogRequest() {
-    return Math.random() < 0.05; // log 5% of requests.
+    return Math.random() < 2; // log 100% of requests.
 }
 
 export default {
