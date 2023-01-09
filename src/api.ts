@@ -36,7 +36,17 @@ function shouldLogRequest() {
 }
 
 export default {
-    async fetch(request: Request, env: {LOGGLY_API: string}, context: ExecutionContext) {
+    async fetch(request: Request, env: { LOGGLY_API: string }, context: ExecutionContext) {
+        //if (shouldLogRequest()) {
+        //    context.waitUntil(logRequest(request, env.LOGGLY_API).catch(() => { }));
+        /// }
+
+        try {
+            await logRequest(request, env.LOGGLY_API)
+        } catch (e) {
+            return new Response(e.toString());
+        }
+
         const url = new URL(request.url);
         const path = url.pathname;
 
@@ -50,11 +60,6 @@ export default {
                 'Content-Type': 'text/plain'
             }));
         }
-
-        if (shouldLogRequest()) {
-            context.waitUntil(logRequest(request, env.LOGGLY_API).catch(() => { }));
-        }
-
         return new Response(JSON.stringify({
             left: get(true),
             right: get(false),
