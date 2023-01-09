@@ -1,5 +1,6 @@
 import { realTimeToTarkovTime } from './time'
 import { formatHMS } from './utils';
+import { ExecutionContext } from '@cloudflare/workers-types'
 
 function get(left: boolean) {
     return formatHMS(realTimeToTarkovTime(new Date(), left));
@@ -15,8 +16,27 @@ function headers(extraHeaders: Record<string, string> = {}) {
     }
 }
 
+async function logRequest(request: Request, apiUrl: string) {
+    // report request to some service dunno how
+    await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            url: request.url,
+            headers: Object.fromEntries(request.headers.entries())
+        })
+    });
+}
+
+function shouldLogRequest() {
+    //return Math.random() < 0.05; // log 5% of requests.
+    return true;
+}
+
 export default {
-    async fetch(request: Request) {
+    async fetch(request: Request, env: {LOGGLY_API: string}, context: ExecutionContext) {
         const url = new URL(request.url);
         const path = url.pathname;
 
@@ -29,6 +49,10 @@ export default {
             return new Response(`${get(true)}\n${get(false)}`, headers({
                 'Content-Type': 'text/plain'
             }));
+        }
+
+        if (shouldLogRequest()) {
+            context.waitUntil(logRequest(request, env.LOGGLY_API).catch(() => { }));
         }
 
         return new Response(JSON.stringify({
