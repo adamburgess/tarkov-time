@@ -2,6 +2,7 @@
     "private": true,
     "type": "module",
     "devDependencies": {
+        "@cloudflare/workers-types": "^4.20221111.1",
         "@rollup/plugin-commonjs": "^24.0.0",
         "@rollup/plugin-node-resolve": "^15.0.1",
         "@rollup/plugin-terser": "^0.2.1",
