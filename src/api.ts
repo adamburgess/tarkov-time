@@ -17,7 +17,7 @@ function headers(extraHeaders: Record<string, string> = {}) {
 }
 
 async function logRequest(request: Request, apiUrl: string) {
-    // report request to some service dunno how
+    // report request to loggly
     await fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -31,20 +31,13 @@ async function logRequest(request: Request, apiUrl: string) {
 }
 
 function shouldLogRequest() {
-    //return Math.random() < 0.05; // log 5% of requests.
-    return true;
+    return Math.random() < 0.05; // log 5% of requests.
 }
 
 export default {
     async fetch(request: Request, env: { LOGGLY_API: string }, context: ExecutionContext) {
-        //if (shouldLogRequest()) {
-        //    context.waitUntil(logRequest(request, env.LOGGLY_API).catch(() => { }));
-        /// }
-
-        try {
-            await logRequest(request, env.LOGGLY_API)
-        } catch (e) {
-            return new Response(e.toString());
+        if (shouldLogRequest()) {
+           context.waitUntil(logRequest(request, env.LOGGLY_API).catch(() => { }));
         }
 
         const url = new URL(request.url);
