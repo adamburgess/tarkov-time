@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@cloudflare/workers-types': ^4.20221111.1
   '@rollup/plugin-commonjs': ^24.0.0
   '@rollup/plugin-node-resolve': ^15.0.1
   '@rollup/plugin-terser': ^0.2.1
@@ -20,6 +21,7 @@ dependencies:
   tailwindcss: 3.2.4_postcss@8.4.20
 
 devDependencies:
+  '@cloudflare/workers-types': 4.20221111.1
   '@rollup/plugin-commonjs': 24.0.0_rollup@3.9.0
   '@rollup/plugin-node-resolve': 15.0.1_rollup@3.9.0
   '@rollup/plugin-terser': 0.2.1_rollup@3.9.0
@@ -33,6 +35,10 @@ devDependencies:
   typescript: 4.9.4
 
 packages:
+
+  /@cloudflare/workers-types/4.20221111.1:
+    resolution: {integrity: sha512-BNV2wN8V6Zduvo7UzxcdjBbLQ906D2KhS804PDufLgx/sanGJCHVJMOIaLvS/b61JKtot1U7P/l1fjrjZ7/E3A==}
+    dev: true
 
   /@esbuild/android-arm/0.16.12:
     resolution: {integrity: sha512-CTWgMJtpCyCltrvipZrrcjjRu+rzm6pf9V8muCsJqtKujR3kPmU4ffbckvugNNaRmhxAF1ZI3J+0FUIFLFg8KA==}
