@@ -16,7 +16,7 @@ function headers(extraHeaders: Record<string, string> = {}) {
     }
 }
 
-async function logRequest(request: Request, apiUrl: string) {
+async function logRequest(request: Request, apiUrl: string, response: any) {
     // report request to loggly
     await fetch(apiUrl, {
         method: 'POST',
@@ -25,7 +25,8 @@ async function logRequest(request: Request, apiUrl: string) {
         },
         body: JSON.stringify({
             url: request.url,
-            headers: Object.fromEntries(request.headers.entries())
+            headers: Object.fromEntries(request.headers.entries()),
+            response
         })
     });
 }
@@ -34,30 +35,58 @@ function shouldLogRequest() {
     return Math.random() < 2; // log 100% of requests.
 }
 
+function isSpam(request: Request) {
+    const ip = request.headers.get('cf-connecting-ip');
+    const ua = request.headers.get('user-agent')?.toLowerCase() ?? '';
+    if (ip === '81.109.147.70') return true; // 30,000 requests per day from one ip...
+    if (ua.includes('qtwebengine')) return true; // 40,000 requests from all over the place, and I have no idea what program this is.
+
+    return false;
+}
+
 export default {
     async fetch(request: Request, env: { LOGGLY_API: string }, context: ExecutionContext) {
-        if (shouldLogRequest()) {
-           context.waitUntil(logRequest(request, env.LOGGLY_API).catch(() => { }));
-        }
+
+        let response = '';
+        let h: RequestInit;
 
         const url = new URL(request.url);
         const path = url.pathname;
 
-        if (path === '/left') return new Response(get(true), headers());
-        else if (path === '/right') return new Response(get(false), headers());
-
-        let plaintext = url.searchParams.get('type') === 'plain';
-
-        if (plaintext) {
-            return new Response(`${get(true)}\n${get(false)}`, headers({
+        if (isSpam(request)) {
+            // ¯\_(ツ)_/¯
+            response = `Sorry, you're making too many requests. Make an issue at github.com/adamburgess/tarkov-time`;
+            h = headers({
                 'Content-Type': 'text/plain'
-            }));
+            });
         }
-        return new Response(JSON.stringify({
-            left: get(true),
-            right: get(false),
-        }, null, 2), headers({
-            'Content-Type': 'application/json'
-        }));
+        else if (path === '/left') {
+            response = get(true);
+            h = headers();
+        }
+        else if (path === '/right') {
+            response = get(false);
+            h = headers();
+        } else {
+            let plaintext = url.searchParams.get('type') === 'plain';
+            if (plaintext) {
+                response = `${get(true)}\n${get(false)}`;
+                h = headers({
+                    'Content-Type': 'text/plain'
+                });
+            } else {
+                response = JSON.stringify({
+                    left: get(true),
+                    right: get(false),
+                }, null, 2);
+                h = headers({
+                    'Content-Type': 'application/json'
+                });
+            }
+        }
+
+        context.waitUntil(logRequest(request, env.LOGGLY_API, response).catch(() => { }));
+
+        return new Response(response, h);
     }
 }
