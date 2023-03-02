@@ -31,15 +31,14 @@ async function logRequest(request: Request, apiUrl: string, response: any) {
     });
 }
 
-function shouldLogRequest() {
-    return Math.random() < 2; // log 100% of requests.
-}
-
 function isSpam(request: Request) {
+
+    return false;
+
     const ip = request.headers.get('cf-connecting-ip');
     const ua = request.headers.get('user-agent')?.toLowerCase() ?? '';
     if (ip === '81.109.147.70') return true; // 30,000 requests per day from one ip...
-    if (ua.includes('qtwebengine')) return true; // 40,000 requests from all over the place, and I have no idea what program this is.
+    if (ua.includes('qtwebengine')) return true; // 40,000 requests from all over the place, and ~~I have no idea what program this is.~~ https://apps.elgato.com/plugins/com.komordzsi.tarkovtime (no hard feelings!)
 
     return false;
 }
