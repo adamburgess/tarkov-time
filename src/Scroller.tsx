@@ -1,6 +1,6 @@
 import { h, Fragment } from 'preact';
-import { realTimeToTarkovTime, timeUntilRelative } from './time';
-import { formatHMS, formatLocalTime, formatTimeUntil, hrs } from './utils';
+import { realTimeToTarkovTime, timeUntilRelative, hrs } from './time';
+import { formatHMS, formatLocalTime, formatTimeUntil } from './utils';
 
 function TarkovCurrentTime({ tarkovTime }: { tarkovTime: Date }) {
     return <Fragment>{formatHMS(tarkovTime)}</Fragment>

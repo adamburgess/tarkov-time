@@ -1,7 +1,9 @@
-import { hrs } from './utils';
-
 // 1 second real time = 7 seconds tarkov time
 const tarkovRatio = 7;
+
+export function hrs(num: number) {
+    return 1000 * 60 * 60 * num;
+}
 
 export function realTimeToTarkovTime(time: Date, left: boolean) {
     // tarkov time moves at 7 seconds per second.
