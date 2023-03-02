@@ -85,7 +85,9 @@ export default {
             }
         }
 
-        context.waitUntil(logRequest(request, env.LOGGLY_API, response).catch(() => { }));
+        if ('LOGGLY_API' in env) {
+            context.waitUntil(logRequest(request, env.LOGGLY_API, response).catch(() => { }));
+        }
 
         return new Response(response, h);
     }
