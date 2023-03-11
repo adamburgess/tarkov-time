@@ -23,7 +23,3 @@ export function formatLocalTime(date: Date) {
     const hours = date.getHours();
     return `${hours == 0 ? '12' : hours >= 12 ? hours - 12 : hours}:${date.getMinutes().toString().padStart(2, '0')}${hours < 12 ? 'a' : 'p'}m`;
 }
-
-export function hrs(num: number) {
-    return 1000 * 60 * 60 * num;
-}
