@@ -2,6 +2,8 @@ import { h, Fragment } from 'preact';
 import { realTimeToTarkovTime, timeUntilRelative, hrs } from './time';
 import { formatHMS, formatLocalTime, formatTimeUntil } from './utils';
 
+import './Scroller.css'
+
 function TarkovCurrentTime({ tarkovTime }: { tarkovTime: Date }) {
     return <Fragment>{formatHMS(tarkovTime)}</Fragment>
 }
@@ -43,9 +45,7 @@ function TarkovCurrentTimeElement({ tarkovTime, left }: { tarkovTime: Date, left
     </div>
 }
 
-export function Scroller({ side, time }: { side: 'left' | 'right', time: Date }) {
-    const isLeft = side === 'left';
-
+export function Scroller({ isLeft, time }: { isLeft: boolean, time: Date }) {
     const tarkovTime = realTimeToTarkovTime(time, isLeft);
     const tarkovHour = tarkovTime.getUTCHours();
     const tarkovMinute = tarkovTime.getUTCMinutes();
@@ -85,16 +85,8 @@ export function Scroller({ side, time }: { side: 'left' | 'right', time: Date })
             }}>
                 {hourElements}
             </div>
-            <div class="absolute w-full" style={{
-                top: 0,
-                height: 40,
-                background: 'linear-gradient(180deg, rgba(33,33,33,1) 0%, rgba(33,33,33,0) 100%)'
-            }}></div>
-            <div class="z-10 absolute w-full" style={{
-                bottom: 0,
-                height: 120,
-                background: 'linear-gradient(0deg, rgba(33,33,33,1) 0%, rgba(33,33,33,1) 50%, rgba(33,33,33,0) 100%)'
-            }}></div>
+            <div class="absolute w-full T"></div>
+            <div class="z-10 absolute w-full B"></div>
             <TarkovCurrentTimeElement tarkovTime={tarkovTime} left={isLeft} />
         </div>
     </div>

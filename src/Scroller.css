@@ -1,0 +1,10 @@
+.T {
+    top: 0px;
+    height: 40px;
+    background: linear-gradient(180deg, rgba(33,33,33,1) 0%, rgba(33,33,33,0) 100%);
+}
+.B {
+    bottom: 0px;
+    height: 120px;
+    background: linear-gradient(0deg, rgba(33,33,33,1) 0%, rgba(33,33,33,1) 50%, rgba(33,33,33,0) 100%);
+}

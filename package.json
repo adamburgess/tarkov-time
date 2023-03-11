@@ -22,5 +22,6 @@
     "scripts": {
         "build": "rollup -c",
         "start": "rollup -c -w"
-    }
+    },
+    "browserslist": "defaults and supports es6-module"
 }
