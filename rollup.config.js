@@ -9,7 +9,7 @@ import htmlMinifier from 'html-minifier'
 import { brotliCompressSync, gzipSync } from 'zlib'
 import esbuild from 'rollup-plugin-esbuild'
 
-const production = !process.env.ROLLUP_WATCH;
+const production = !process.env.ROLLUP_WATCH || process.env.NODE_END !== 'production';
 if (production) {
     process.env.NODE_ENV = 'production';
 }
