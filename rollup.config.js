@@ -9,7 +9,7 @@ import htmlMinifier from 'html-minifier'
 import { brotliCompressSync, gzipSync } from 'zlib'
 import esbuild from 'rollup-plugin-esbuild'
 
-const production = !process.env.ROLLUP_WATCH || process.env.NODE_END !== 'production';
+const production = !process.env.ROLLUP_WATCH || process.env.NODE_ENV == 'production';
 if (production) {
     process.env.NODE_ENV = 'production';
 }
@@ -28,7 +28,7 @@ function html() {
                 style: css.source
             });
 
-            const minifiedHtml = htmlMinifier.minify(html, {
+            const minifiedHtml = !production ? html : htmlMinifier.minify(html, {
                 collapseBooleanAttributes: true,
                 collapseWhitespace: true,
                 decodeEntities: true,
@@ -133,6 +133,11 @@ export default [{
             compress: {
                 passes: 5,
                 unsafe_methods: true
+            },
+            mangle: {
+                properties: {
+                    reserved: ['class']
+                }
             },
             ecma: 2019
         }),
