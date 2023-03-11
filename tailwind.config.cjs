@@ -1,11 +1,10 @@
-// tailwind.config.js
+/** @type {import('tailwindcss').Config} */
 module.exports = {
     content: [
         './src/*.{tsx,mustache}'
     ],
-    corePlugins: {
-        textOpacity: false,
-        backgroundOpacity: false
+    future: {
+        disableColorOpacityUtilitiesByDefault: true
     },
     theme: {
         container: {
