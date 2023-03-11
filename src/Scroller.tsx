@@ -13,8 +13,8 @@ function TarkovFutureTime({ hour, future, isLeft }: { hour: number, future: numb
     const timeNow = formatLocalTime(new Date(new Date().getTime() + future));
 
     return <Fragment>
-        <div class={`border-b inline`} style={{ width: 10, height: 0 }}></div>
-        <div class={`flex flex-col px-1`}>
+        <div class="border-b inline" style={{ width: 10, height: 0 }}></div>
+        <div class="flex flex-col px-1">
             <div class="leading-4 text-base text-gray-400 ff-blender">{hour.toString().padStart(2, '0')}:00</div>
             <div class={"flex leading-4 text-xs text-gray-500 " + direction}>
                 <span>{timeNow}</span>
@@ -62,8 +62,6 @@ export function Scroller({ side, time }: { side: 'left' | 'right', time: Date })
         });
     }
 
-
-
     let border = " ";
     border += isLeft ? 'border-l' : 'border-r';
     let align = isLeft ? 'text-left' : 'text-right';
@@ -81,7 +79,7 @@ export function Scroller({ side, time }: { side: 'left' | 'right', time: Date })
     return <div style={{
         height: 12 * 60
     }}>
-        <div class={`relative overflow-hidden`}>
+        <div class="relative overflow-hidden">
             <div class="relative" style={{
                 top: -tarkovMinute
             }}>
