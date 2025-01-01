@@ -9,5 +9,5 @@ edition = "2021"
 druid = { git = "https://github.com/linebender/druid.git", rev = "0214404d" }
 
 [build-dependencies]
-embed-resource = "2.4"
+embed-resource = "3.0.1"
 winres = "0.1.12"

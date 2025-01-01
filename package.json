@@ -2,22 +2,22 @@
     "private": true,
     "type": "module",
     "devDependencies": {
-        "@cloudflare/workers-types": "^4.20231218.0",
-        "@rollup/plugin-commonjs": "^25.0.7",
-        "@rollup/plugin-node-resolve": "^15.2.3",
+        "@cloudflare/workers-types": "^4.20241230.0",
+        "@rollup/plugin-commonjs": "^28.0.2",
+        "@rollup/plugin-node-resolve": "^16.0.0",
         "@rollup/plugin-terser": "^0.4.4",
-        "esbuild": "^0.19.11",
+        "esbuild": "^0.24.2",
         "html-minifier": "^4.0.0",
         "mustache": "^4.2.0",
-        "postcss": "^8.4.33",
-        "rollup": "^4.9.5",
-        "rollup-plugin-esbuild": "^6.1.0",
+        "postcss": "^8.4.49",
+        "rollup": "^4.29.1",
+        "rollup-plugin-esbuild": "^6.1.1",
         "rollup-plugin-postcss": "^4.0.2",
-        "typescript": "^5.3.3"
+        "typescript": "^5.7.2"
     },
     "dependencies": {
-        "preact": "^10.19.3",
-        "tailwindcss": "^3.4.1"
+        "preact": "^10.25.4",
+        "tailwindcss": "^3.4.17"
     },
     "scripts": {
         "build": "rollup -c",
