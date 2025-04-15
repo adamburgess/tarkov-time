@@ -147,7 +147,8 @@ export default [{
 /favicon.ico
     Cache-Control: max-age=604800, stale-if-error=31536000
 `),
-        routes(['/api', '/left', '/right'])
+        //routes(['/api', '/left', '/right'])
+        routes([])
     ]
 }, {
     input: 'src/api.ts',
