@@ -150,7 +150,7 @@ export default [{
         //routes(['/api', '/left', '/right'])
         routes([])
     ]
-}, {
+}/*, {
     input: 'src/api.ts',
     output: {
         file: '.output/_worker.js',
@@ -161,4 +161,4 @@ export default [{
         commonjs(),
         esbuild()
     ]
-}];
+}*/];
