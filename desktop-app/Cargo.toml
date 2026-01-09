@@ -6,8 +6,8 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-druid = { git = "https://github.com/linebender/druid.git", rev = "0214404d" }
+druid = { git = "https://github.com/linebender/druid.git", rev = "b27ea6a618c32f9ea0e8a56822f9487d23401c0d" }
 
 [build-dependencies]
-embed-resource = "3.0.1"
+embed-resource = "3.0.6"
 winres = "0.1.12"
